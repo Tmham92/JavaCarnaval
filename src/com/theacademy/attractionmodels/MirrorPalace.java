@@ -3,7 +3,7 @@ package com.theacademy.attractionmodels;
 public class MirrorPalace extends Attraction {
     double prize = 2.75;
     double earnings = 0;
-    int tickets;
+    int ticketsSold = 0;
     double area;
 
     public double getPrize() {
@@ -30,10 +30,18 @@ public class MirrorPalace extends Attraction {
         this.earnings = earnings;
     }
 
+    public int getTicketsSold() {
+        return ticketsSold;
+    }
+
+    public void setTicketsSold(int ticketsSold) {
+        this.ticketsSold = ticketsSold;
+    }
+
     @Override
     public void run() {
-        tickets += 1;
-        earnings += getPrize();
+        setTicketsSold(getTicketsSold() + 1);
+        setEarnings(getEarnings() + getPrize());
         System.out.println("Mirror Palace is Working!");
     }
 
@@ -42,7 +50,7 @@ public class MirrorPalace extends Attraction {
         return "MirrorPalace{" +
                 "prize=" + prize +
                 ", earnings=" + earnings +
-                ", tickets=" + tickets +
+                ", tickets=" + ticketsSold +
                 '}';
     }
 }

@@ -56,12 +56,11 @@ public class Hawaii extends Attraction implements HighRiskAttraction {
     @Override
     public void run() {
         setSpinningLimit(getSpinningLimit() - 1);
-        ticketsSold += 1;
+        setTicketsSold(getTicketsSold() + 1);
         if (getSpinningLimit() == 0) {
             maintainAttraction();
         }
-        earnings += prize;
-        totalEarnings += prize;
+        setEarnings(getEarnings() + getPrize());
         System.out.println("Spins Left " + getSpinningLimit());
     }
 

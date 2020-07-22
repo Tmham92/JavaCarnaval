@@ -38,11 +38,18 @@ public class BumperCarts extends Attraction {
         this.ticketsSold = tickets;
     }
 
+    public int getTicketsSold() {
+        return ticketsSold;
+    }
+
+    public void setTicketsSold(int ticketsSold) {
+        this.ticketsSold = ticketsSold;
+    }
+
     @Override
     public void run() {
-        ticketsSold += 1;
-        earnings += prize;
-        totalEarnings += prize;
+        setTicketsSold(getTicketsSold() + 1);
+        setEarnings(getEarnings() + getPrize());
         System.out.println(this.getClass().getSimpleName() + " is working!");
     }
 

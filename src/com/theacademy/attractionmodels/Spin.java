@@ -59,8 +59,8 @@ public class Spin extends Attraction implements HighRiskAttraction {
         if (getSpinningLimit() == 0) {
             maintainAttraction();
         }
-        ticketsSold += 1;
-        earnings += getPrize();
+        setTicketsSold(getTicketsSold() + 1);
+        setEarnings(getEarnings() + getPrize());
         System.out.println("Spins Left " + getSpinningLimit());
     }
 
@@ -75,7 +75,7 @@ public class Spin extends Attraction implements HighRiskAttraction {
 
     @Override
     public void attractionCheck() {
-        System.out.println("Spin is checked! Spin limit is: " + spinningLimit);
+        System.out.println("Spin is checked! Spin limit is: " + getSpinningLimit());
     }
 
     @Override

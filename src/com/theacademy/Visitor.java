@@ -1,9 +1,6 @@
 package com.theacademy;
 
 import com.theacademy.attractionmodels.*;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -27,50 +24,51 @@ public class Visitor {
             case 1:
                 buyTicket(bumperCarts.getPrize(), attractionNumber);
                 bumperCarts.run();
-                System.out.println(bumperCarts.toString());
-                enterAgain();
+
                 break;
             case 2:
                 buyTicket(spin.getPrize(), attractionNumber);
                 spin.run();
-                System.out.println(spin.toString());
-                enterAgain();
                 break;
             case 3:
                 buyTicket(mirrorPalace.getPrize(), attractionNumber);
                 mirrorPalace.run();
-                System.out.println(mirrorPalace.toString());
-                enterAgain();
                 break;
             case 4:
                 buyTicket(hauntedHouse.getPrize(), attractionNumber);
                 hauntedHouse.run();
-                System.out.println(hauntedHouse.toString());
-                enterAgain();
                 break;
             case 5:
                 buyTicket(hawaii.getPrize(), attractionNumber);
                 hawaii.run();
-                System.out.println(hawaii.toString());
-                enterAgain();
                 break;
             case 6:
                 buyTicket(climbingLadder.getPrize(), attractionNumber);
                 climbingLadder.run();
-                System.out.println(climbingLadder.toString());
-                enterAgain();
                 break;
             default:
                 System.out.println("give valid input (1 to 6)");
                 enterAttraction();
         }
+        enterAgain();
     }
 
     public void buyTicket(double ticketPrize, int attractionNumber) {
+        TaxInspector inspector = new TaxInspector();
+
         cashier.moneyPerAttraction.set(attractionNumber - 1, cashier.moneyPerAttraction.get(attractionNumber - 1) + ticketPrize);
         cashier.ticketsPerAttraction.set(attractionNumber - 1, cashier.ticketsPerAttraction.get(attractionNumber - 1) + 1);
+
         cashier.updateTotalEarnings();
         cashier.updateTotalTicketsSold();
+
+        if (inspector.isComing()) {
+            System.out.println("Taxes to pay: ");
+            System.out.println(climbingLadder.getEarnings() + " times " + climbingLadder.getGamblingTaxes());
+            System.out.println("which is a total of " + climbingLadder.getEarnings() * climbingLadder.getGamblingTaxes());
+            cashier.payTaxes(climbingLadder.getEarnings(), climbingLadder.getGamblingTaxes());
+            cashier.updateTotalEarnings();
+        }
 
         System.out.println("Earnings");
         System.out.println(cashier.moneyPerAttraction);
@@ -82,7 +80,7 @@ public class Visitor {
 
     public void enterAgain() {
         System.out.println("Exit = 'n'; Anything is again");
-        System.out.println("Earnings = 'o'; Tickets = 't'");
+        System.out.println("Earnings = 'o'; Tickets = 'k'");
         char userInput = scanner.next().charAt(0);
 
         if (userInput == 'n') {
@@ -93,7 +91,7 @@ public class Visitor {
             System.out.println("Total Earnings: " + cashier.getMoneyEarned());
             enterAgain();
 
-        } else if (userInput == 't') {
+        } else if (userInput == 'k') {
             System.out.println("Total Tickets Sold: " + cashier.getTicketsSold());
             enterAgain();
         } else {

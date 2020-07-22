@@ -30,11 +30,17 @@ public class HauntedHouse extends Attraction {
         this.earnings = earnings;
     }
 
+    public int getTicketsSold() {
+        return ticketsSold;
+    }
+
+    public void setTicketsSold(int ticketsSold) {
+        this.ticketsSold = ticketsSold;
+    }
+
     public void run() {
-        ticketsSold += 1;
-        earnings += prize;
-        totalEarnings += prize;
-        System.out.println(this.getClass().getSimpleName() + " is working!");
+        setTicketsSold(getTicketsSold() +1);
+        setEarnings(getEarnings() + getPrize());
     }
 
     @Override
