@@ -1,14 +1,10 @@
-package com.theacademy.attractionmodels;
+package com.theacademy.carnaval;
 
-import com.theacademy.TaxInspector;
-
-public class ClimbingLadder extends Attraction implements GamblingAttraction {
-    double prize = 5.00;
+public class BumperCarts extends Attraction {
+    double prize = 2.50;
     double earnings = 0;
     int ticketsSold;
     double area;
-    final double gamblingTaxes = 0.30;
-
 
     public double getPrize() {
         return prize;
@@ -34,16 +30,20 @@ public class ClimbingLadder extends Attraction implements GamblingAttraction {
         this.earnings = earnings;
     }
 
+    public int getTickets() {
+        return ticketsSold;
+    }
+
+    public void setTickets(int tickets) {
+        this.ticketsSold = tickets;
+    }
+
     public int getTicketsSold() {
         return ticketsSold;
     }
 
     public void setTicketsSold(int ticketsSold) {
         this.ticketsSold = ticketsSold;
-    }
-
-    public double getGamblingTaxes() {
-        return gamblingTaxes;
     }
 
     @Override
@@ -54,16 +54,10 @@ public class ClimbingLadder extends Attraction implements GamblingAttraction {
 
     @Override
     public String toString() {
-        return "ClimbingLadder{" +
+        return "BumperCarts{" +
                 "prize=" + prize +
                 ", earnings=" + earnings +
-                ", ticketsSold=" + ticketsSold +
-                ", gamblingTaxes=" + gamblingTaxes +
+                ", tickets=" + ticketsSold +
                 '}';
-    }
-
-    @Override
-    public boolean hasToPayTaxes() {
-        return true;
     }
 }

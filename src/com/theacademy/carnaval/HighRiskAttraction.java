@@ -1,4 +1,4 @@
-package com.theacademy.attractionmodels;
+package com.theacademy.carnaval;
 
 public interface HighRiskAttraction {
     void attractionCheck();

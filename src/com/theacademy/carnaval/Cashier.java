@@ -1,7 +1,5 @@
-package com.theacademy;
+package com.theacademy.carnaval;
 
-
-import com.theacademy.attractionmodels.GamblingAttraction;
 
 import java.util.ArrayList;
 import java.util.Collections;

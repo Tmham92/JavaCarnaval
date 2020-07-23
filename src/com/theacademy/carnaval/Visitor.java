@@ -1,6 +1,5 @@
-package com.theacademy;
+package com.theacademy.carnaval;
 
-import com.theacademy.attractionmodels.*;
 import java.util.Scanner;
 
 

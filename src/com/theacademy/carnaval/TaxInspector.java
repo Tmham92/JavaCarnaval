@@ -1,4 +1,4 @@
-package com.theacademy;
+package com.theacademy.carnaval;
 
 import java.util.Random;
 

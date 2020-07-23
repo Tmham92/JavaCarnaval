@@ -1,4 +1,4 @@
-package com.theacademy;
+package com.theacademy.carnaval;
 
 public class Main {
     public static void main(String[] args) {

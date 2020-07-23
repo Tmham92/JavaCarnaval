@@ -1,7 +1,7 @@
-package com.theacademy.attractionmodels;
+package com.theacademy.carnaval;
 
-public class BumperCarts extends Attraction {
-    double prize = 2.50;
+public class HauntedHouse extends Attraction {
+    double prize = 3.20;
     double earnings = 0;
     int ticketsSold;
     double area;
@@ -30,14 +30,6 @@ public class BumperCarts extends Attraction {
         this.earnings = earnings;
     }
 
-    public int getTickets() {
-        return ticketsSold;
-    }
-
-    public void setTickets(int tickets) {
-        this.ticketsSold = tickets;
-    }
-
     public int getTicketsSold() {
         return ticketsSold;
     }
@@ -46,16 +38,14 @@ public class BumperCarts extends Attraction {
         this.ticketsSold = ticketsSold;
     }
 
-    @Override
     public void run() {
-        setTicketsSold(getTicketsSold() + 1);
+        setTicketsSold(getTicketsSold() +1);
         setEarnings(getEarnings() + getPrize());
-        System.out.println(this.getClass().getSimpleName() + " is working!");
     }
 
     @Override
     public String toString() {
-        return "BumperCarts{" +
+        return "HauntedHouse{" +
                 "prize=" + prize +
                 ", earnings=" + earnings +
                 ", tickets=" + ticketsSold +
