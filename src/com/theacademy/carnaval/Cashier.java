@@ -66,6 +66,7 @@ public class Cashier {
     }
 
     public void payTaxes(double earnings, double taxPercentage) {
+        updateTotalEarnings();
         setTimesTaxesPaid(getTimesTaxesPaid() + 1);
         double taxesToPay = earnings * taxPercentage;
         setTaxesPaid(getTimesTaxesPaid() + taxesToPay);

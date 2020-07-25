@@ -1,9 +1,9 @@
-package com.theacademy.carnaval;
+package com.theacademy.carnaval.attractionmodels;
 
-public class HauntedHouse extends Attraction {
-    double prize = 3.20;
+public class MirrorPalace extends Attraction {
+    double prize = 2.75;
     double earnings = 0;
-    int ticketsSold;
+    int ticketsSold = 0;
     double area;
 
     public double getPrize() {
@@ -38,14 +38,15 @@ public class HauntedHouse extends Attraction {
         this.ticketsSold = ticketsSold;
     }
 
+    @Override
     public void run() {
-        setTicketsSold(getTicketsSold() +1);
+        setTicketsSold(getTicketsSold() + 1);
         setEarnings(getEarnings() + getPrize());
     }
 
     @Override
     public String toString() {
-        return "HauntedHouse{" +
+        return "MirrorPalace{" +
                 "prize=" + prize +
                 ", earnings=" + earnings +
                 ", tickets=" + ticketsSold +

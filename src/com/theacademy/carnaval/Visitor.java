@@ -1,5 +1,7 @@
 package com.theacademy.carnaval;
 
+import com.theacademy.carnaval.attractionmodels.*;
+
 import java.util.Scanner;
 
 
@@ -23,11 +25,14 @@ public class Visitor {
             case 1:
                 buyTicket(bumperCarts.getPrize(), attractionNumber);
                 bumperCarts.run();
-
                 break;
             case 2:
-                buyTicket(spin.getPrize(), attractionNumber);
-                spin.run();
+                if (spin.getSpinningLimit() <= 0) {
+                    System.out.println("Attraction needs maintenance.");
+                } else {
+                    buyTicket(spin.getPrize(), attractionNumber);
+                    spin.run();
+                }
                 break;
             case 3:
                 buyTicket(mirrorPalace.getPrize(), attractionNumber);
@@ -38,8 +43,12 @@ public class Visitor {
                 hauntedHouse.run();
                 break;
             case 5:
-                buyTicket(hawaii.getPrize(), attractionNumber);
-                hawaii.run();
+                if (hawaii.getSpinningLimit() <= 0) {
+                    System.out.println("Attraction needs maintenance.");
+                } else {
+                    buyTicket(hawaii.getPrize(), attractionNumber);
+                    hawaii.run();
+                }
                 break;
             case 6:
                 buyTicket(climbingLadder.getPrize(), attractionNumber);
@@ -58,28 +67,26 @@ public class Visitor {
         cashier.moneyPerAttraction.set(attractionNumber - 1, cashier.moneyPerAttraction.get(attractionNumber - 1) + ticketPrize);
         cashier.ticketsPerAttraction.set(attractionNumber - 1, cashier.ticketsPerAttraction.get(attractionNumber - 1) + 1);
 
-        cashier.updateTotalEarnings();
-        cashier.updateTotalTicketsSold();
 
-        if (inspector.isComing()) {
+        if (inspector.isComing() && climbingLadder.getEarnings() != 0) {
             System.out.println("Taxes to pay: ");
-            System.out.println(climbingLadder.getEarnings() + " times " + climbingLadder.getGamblingTaxes());
-            System.out.println("which is a total of " + climbingLadder.getEarnings() * climbingLadder.getGamblingTaxes());
-            cashier.payTaxes(climbingLadder.getEarnings(), climbingLadder.getGamblingTaxes());
-            cashier.updateTotalEarnings();
+            System.out.println((climbingLadder.getEarnings() + climbingLadder.getPrize()) + " times " + climbingLadder.getGamblingTaxes());
+            System.out.println("which is a total of " + climbingLadder.getEarnings() + climbingLadder.getPrize() * climbingLadder.getGamblingTaxes());
+            cashier.payTaxes(climbingLadder.getEarnings() + climbingLadder.getPrize(), climbingLadder.getGamblingTaxes());
         }
+        cashier.updateTotalTicketsSold();
+        cashier.updateTotalEarnings();
 
-        System.out.println("Earnings");
         System.out.println(cashier.moneyPerAttraction);
-        System.out.println("");
-        System.out.println("Tickets");
-        System.out.println(cashier.ticketsPerAttraction);
-        System.out.println("");
+
     }
 
     public void enterAgain() {
         System.out.println("Exit = 'n'; Anything is again");
         System.out.println("Earnings = 'o'; Tickets = 'k'");
+        if (spin.getSpinningLimit() <= 0 || hawaii.getSpinningLimit() <= 0) {
+            System.out.println("Maintenance needed; enter 'm'");
+        }
         char userInput = scanner.next().charAt(0);
 
         if (userInput == 'n') {
@@ -93,6 +100,14 @@ public class Visitor {
         } else if (userInput == 'k') {
             System.out.println("Total Tickets Sold: " + cashier.getTicketsSold());
             enterAgain();
+        } else if (userInput == 'm') {
+            if (spin.getSpinningLimit() <= 0) {
+                spin.maintainAttraction();
+            }
+            else {
+                hawaii.maintainAttraction();
+            }
+            enterAttraction();
         } else {
             enterAttraction();
         }

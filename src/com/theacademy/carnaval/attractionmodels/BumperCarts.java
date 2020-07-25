@@ -1,4 +1,4 @@
-package com.theacademy.carnaval;
+package com.theacademy.carnaval.attractionmodels;
 
 public class BumperCarts extends Attraction {
     double prize = 2.50;

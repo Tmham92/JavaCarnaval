@@ -1,12 +1,10 @@
-package com.theacademy.carnaval.;
+package com.theacademy.carnaval.attractionmodels;
 
-public class ClimbingLadder extends Attraction implements GamblingAttraction {
-    double prize = 5.00;
+public class HauntedHouse extends Attraction {
+    double prize = 3.20;
     double earnings = 0;
     int ticketsSold;
     double area;
-    final double gamblingTaxes = 0.30;
-
 
     public double getPrize() {
         return prize;
@@ -40,28 +38,17 @@ public class ClimbingLadder extends Attraction implements GamblingAttraction {
         this.ticketsSold = ticketsSold;
     }
 
-    public double getGamblingTaxes() {
-        return gamblingTaxes;
-    }
-
-    @Override
     public void run() {
-        setTicketsSold(getTicketsSold() + 1);
+        setTicketsSold(getTicketsSold() +1);
         setEarnings(getEarnings() + getPrize());
     }
 
     @Override
     public String toString() {
-        return "ClimbingLadder{" +
+        return "HauntedHouse{" +
                 "prize=" + prize +
                 ", earnings=" + earnings +
-                ", ticketsSold=" + ticketsSold +
-                ", gamblingTaxes=" + gamblingTaxes +
+                ", tickets=" + ticketsSold +
                 '}';
-    }
-
-    @Override
-    public boolean hasToPayTaxes() {
-        return true;
     }
 }

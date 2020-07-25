@@ -1,4 +1,4 @@
-package com.theacademy.carnaval;
+package com.theacademy.carnaval.attractionmodels;
 
 import java.util.Scanner;
 
@@ -55,13 +55,18 @@ public class Spin extends Attraction implements HighRiskAttraction {
 
     @Override
     public void run() {
-        setSpinningLimit(getSpinningLimit() - 1);
-        if (getSpinningLimit() == 0) {
-            maintainAttraction();
+        try {
+            setSpinningLimit(getSpinningLimit() - 1);
+            if (getSpinningLimit() == 0) {
+                throw new ArithmeticException("Attraction needs maintenance.");
+            }
+            setTicketsSold(getTicketsSold() + 1);
+            setEarnings(getEarnings() + getPrize());
+            System.out.println("Spins Left " + getSpinningLimit());
+        } catch (ArithmeticException ex) {
+            System.out.println("Attractions needs maintenance");
+
         }
-        setTicketsSold(getTicketsSold() + 1);
-        setEarnings(getEarnings() + getPrize());
-        System.out.println("Spins Left " + getSpinningLimit());
     }
 
     @Override
@@ -88,6 +93,7 @@ public class Spin extends Attraction implements HighRiskAttraction {
             maintainAttraction();
         }
         else {
+            System.out.println("Spin is repaired.");
             setSpinningLimit(5);
         }
     }

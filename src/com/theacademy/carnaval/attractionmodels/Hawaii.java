@@ -1,4 +1,4 @@
-package com.theacademy.carnaval;
+package com.theacademy.carnaval.attractionmodels;
 
 import java.util.Scanner;
 

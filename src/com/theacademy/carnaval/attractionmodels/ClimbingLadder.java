@@ -1,10 +1,12 @@
-package com.theacademy.carnaval;
+package com.theacademy.carnaval.attractionmodels;
 
-public class MirrorPalace extends Attraction {
-    double prize = 2.75;
-    double earnings = 0;
-    int ticketsSold = 0;
+public class ClimbingLadder extends Attraction implements GamblingAttraction {
+    double prize = 5.00;
+    double earnings;
+    int ticketsSold;
     double area;
+    final double gamblingTaxes = 0.30;
+
 
     public double getPrize() {
         return prize;
@@ -38,19 +40,28 @@ public class MirrorPalace extends Attraction {
         this.ticketsSold = ticketsSold;
     }
 
+    public double getGamblingTaxes() {
+        return gamblingTaxes;
+    }
+
     @Override
     public void run() {
         setTicketsSold(getTicketsSold() + 1);
         setEarnings(getEarnings() + getPrize());
-        System.out.println("Mirror Palace is Working!");
     }
 
     @Override
     public String toString() {
-        return "MirrorPalace{" +
+        return "ClimbingLadder{" +
                 "prize=" + prize +
                 ", earnings=" + earnings +
-                ", tickets=" + ticketsSold +
+                ", ticketsSold=" + ticketsSold +
+                ", gamblingTaxes=" + gamblingTaxes +
                 '}';
+    }
+
+    @Override
+    public boolean hasToPayTaxes() {
+        return true;
     }
 }
